@@ -30,3 +30,10 @@ class ComentariosViewSet(viewsets.ModelViewSet):
             return ComentarioOutputSerializer
         else:
             return ComentarioInputSerializer
+
+class BuscarComentariosDeUmaTarefa(generics.ListAPIView):
+    queryset = Comentarios.objects.all()
+    serializer_class = ComentarioOutputSerializer
+    def get_queryset(self):
+        comentarios = Comentarios.objects.filter(tarefa_id=self.kwargs['id'])
+        return comentarios
