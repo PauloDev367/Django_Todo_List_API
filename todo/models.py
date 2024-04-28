@@ -5,6 +5,9 @@ class Tarefa(models.Model):
     descricao = models.TextField(null=False, blank=False)
     concluida = models.BooleanField(default=False)
     data_conclusao = models.DateField(null=True)
+    
+    def __str__(self):
+        return self.titulo
 
 class Comentarios(models.Model):
     tarefa = models.ForeignKey(Tarefa, on_delete=models.CASCADE)
